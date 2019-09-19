@@ -25,14 +25,26 @@ try{
 	unset($r);
 	//simple insert
 	//TODO/homework make values variables bindable
-	$insert_query = "INSERT INTO `TestUsers`( `username`, `pin`) VALUES ('JohnDoe', 1234)";
+	$insert_query = "INSERT INTO `TestUsers`( `username`, `pin`) 
+		VALUES (:username, :pin)";
 	$stmt = $db->prepare($insert_query);
-	$r = $stmt->execute();
+	$newUser = "Billy";
+	$newPin = 1234;
+	$r = $stmt->execute(array(":username"=> $newUser, ":pin"=>$newPin));
+	
+	print_r($stmt->errorInfo());
+	
 	//TODO catch error from DB
 	echo "<br>" . ($r>0?"Insert successful":"Insert failed") . "<br>";
 	
 	//TODO select query using bindable :username is where clause
-	//select * from TestUsers where username = 
+	//select * from TestUsers where username =
+	$select_query = "select * from `TestUsers` where username = :username";
+	$stmt = $db->prepare($select_query);
+	$r = $stmt->execute(array(":username"=> "Billy"));
+	$results = $stmt->fetch(PDO::FETCH_ASSOC);
+	//print_r($stmt->errorInfo());
+	echo "<pre>" . var_export($results, true) . "</pre>"; 
 }
 catch(Exception $e){
 	echo $e->getMessage();
