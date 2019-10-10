@@ -50,11 +50,24 @@ function validate(){
 		ev.innerText = "Please enter a valid email address";
 		succeeded = false;
 	}
+	
 	/*
 	add validation for a proper selection from dropdown.
 	First element should be "Select One", and it should require that
 	some other value is selected in order to proceed
 	*/
+	//To get element by name see next line
+	var sel = form.dd;
+	//To get by ID uncomment below
+	//sel = document.getElementById("mySelectId");
+	//sample to show debugger use
+	//succeeded = false;
+	//wrongItem.value = "";
+	if(sel.selectedIndex == 0){
+		alert("Please pick a value");
+		succeeded = false;
+	}
+	console.log(sel.options[sel.selectedIndex].value);
 	return succeeded;	
 }
 </script>
@@ -77,28 +90,12 @@ input { border: 1px solid black; }
 <span style="display:none;" id="validation.password"></span>
 
 <!-- Add dropdown element (something specific to your project) -->
-
+<select name="dd" id="mySelectId">
+	<option value="-1">Select One</option>
+	<option value="0">Zero</option>
+	<option value="1">One</option>
+</select>
 <input type="submit" value="Try it"/>
-
-
-<h1>Drop Down</h1>
-    <form>
-       <fieldset>
-          <legend>Selecting elements</legend>
-          <p>
-             <label>list</label>
-             <select id = "myList">
-               <option value = "1">select one</option>
-               <option value = "2">select two</option>
-               <option value = "3">select three</option>
-               <option value = "4">select four</option>
-             </select>
-          </p>
-       </fieldset>
-    </form>
-
-
-
 </form>
 </div>
 </body>
