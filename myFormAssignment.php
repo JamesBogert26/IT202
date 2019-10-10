@@ -7,43 +7,58 @@ function getName(){
 		echo "<p>Hello, " . $_GET['name'] . "</p>";
 	}
 }
-
-$password = $_GET['password'];
-$confirmpassword = $_GET['confirm_password'];
-
-if($_GET['password']==$_GET['confirm_password'])
-{
-	echo "<p> Confirmed" . "</p>";
-}
-else
-{
-	echo "<p> Doesnt match" . "</p>";
+function checkPasswords(){
+	if(isset($_POST['password']) && isset($_POST['confirm'])){
+		if($_POST['password'] == $_POST['confirm']){
+			echo "<br>Passwords matched<br>";
+		}
+		else{
+			echo "<br>Passwords did not match<br>";
+		}
+	}
 }
 ?>
 <html>
-<head></head>
-<body><?php getName();?>
-<form method="GET" action="#">
+<head>
+<script>
+function validate()
+{
+	var form = document.forms[0];
+	var password = form.password.value;
+	var conf = form.confirm.value;
+	console.log(password);
+	console.log(conf);
+	if(password==conf);
+	{
+		return true;
+	}
+	alert("Password dont match")
+        {
+	return false;
+        }
+}
+
+
+
+</script>
+</head>
+<body>
+<?php GETName();?>
+<form method="POST" action="#" onsubmit="return validate();">
 <input name="name" type="text" placeholder="Enter your name"/>
-<input name="password" type="password" placeholder="Enter a password"/>
 
-<input name="password" type="password" placeholder="Confirm your password"/>
+<input type="password" name="password"/>
 
-<button type="submit" class="pure-button pure-button-primary">Confirm</button>
+<input type="password" name="confirm"/>
 
-
-
-
-
-		
 
 <input type="submit" value="Try it"/>
 </form>
 </body>
 </html>
-
+<?php checkPasswords();?>
 <?php
-if(isset($_GET)){
-	echo "<br><pre>" . var_export($_GET, true) . "</pre><br>";
+if(isset($_POST)){
+	echo "<br><pre>" . var_export($_POST, true) . "</pre><br>";
 }
 ?>
