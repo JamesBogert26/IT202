@@ -1,97 +1,90 @@
-<!DOCTYPE html>
 <html>
 <head>
 <script>
-function validate(){
-	var form = document.forms[0];
-	var password = form.password.value;
-	var conf = form.confirm.value;
+function isEmpty(v){
+ return (v.trim().length == 0);
+}
+function isEmail(inputEle){
+	if(inputEle.type == "email"){
+		return inputEle.value.indexOf('@') > -1;
+	}
 	
-	console.log(password);
-	console.log(conf);
-	let pv = document.getElementById("validation.password");
-	let succeeded = true;
-
-	//if(usern == 
-
-        
-	if(password == conf){
-		
-		pv.style.display = "none";
-		form.confirm.className= "noerror";	
-	}
-	else{
-		pv.style.display = "block";
-		pv.innerText = "Passwords don't match";
-		//form.confirm.focus();
-		form.confirm.className = "error";
-		//form.confirm.style = "border: 1px solid red;";
-		succeeded = false;
-	}
-	var email = form.email.value;
-	var confemail = form.confirm.value;
-	var ev = document.getElementById("validation.email");
-	//this won't show if type="email" since browser handles
-	//better validation. Change to type="text" to test
-	if(email.indexOf('@') > -1){
-		ev.style.display = "none";
-	}
-	else{
-		ev.style.display = "block";
-		ev.innerText = "Please enter a valid email address";
-		succeeded = false;
-	}
-
-	if(email == confemail){
-		
-		pv.style.display = "none";
-		form.confirm.className= "noerror";	
-	}
-	else{
-		pv.style.display = "block";
-		pv.innerText = "Emails don't match";
-		//form.confirm.focus();
-		form.confirm.className = "error";
-		//form.confirm.style = "border: 1px solid red;";
-		succeeded = false;
-	}
-
-
-	
+	return true;
 	
 	
 }
+function myValidation(inputEle, inputName){
+	var isValid = true;
+	if(inputName.length > 0){
+		let other = document.forms[0][inputName];
+		let v1 = inputEle.value;
+		let v2 = other.value;
+		if(isEmpty(v1)){
+			//do error empty
+			isValid = false;
+			console.log("Value 1 is empty");
+		}
+		if(isEmpty(v2)){
+			//do error empty
+			isValid = false;
+			console.log("Value 2 is empty");
+		}
+		if(v1 != v2){
+			//do error
+			isValid = false;
+			console.log("Value 1 and value 2 don't match");
+		}
+		if(!isEmail(inputEle)){
+			//do error email
+			isValid = false;
+			console.log("First email input is not a valid email");
+		}
+		if(!isEmail(other)){
+			//do error email
+			isValid = false;
+			console.log("Second email input is not a valid email");
+		}
+	}
+	else{
+		let v = inputEle.value;
+		if(isEmpty(v)){
+			isValid = false;
+			console.log("Value is empty (else)");
+		}
+		if(!isEmail(inputEle)){
+			isValid = false;
+			console.log("Input is not valid email (else)");
+		}
+	}
+	if(!isValid){
+		alert("There's at least 1 problem");
+	}
+}
 </script>
-<style>
-input { border: 1px solid black; }
-.error {border: 1px solid red;}
-.noerror {border: 1px solid black;}
-</style>
 </head>
+
 <body>
-<div style="margin-left: 25%; margin-right:50%;">
-<form method="POST" action="#" onsubmit="return validate();">
-<input name="name" type="text" placeholder="Enter your name"/>
-
-<input name="email" type="email" placeholder="name@example.com"/>
-<input name="confemail" type="email" placeholder="name@example.com"/>
-<span id="validation.email" style="display:none;"></span>
-
-<input type="password" name="password" placeholder="Enter password"/>
-<input type="password" name="confirm" placeholder="Re-Enter password"/>
-<span style="display:none;" id="validation.password"></span>
-
-
-
+<form onsubmit="return false;">
+<input type="email" name="email" placeholder="Email"
+	onchange="myValidation(this, '');"
+/>
+<input type="email" name="confirmemail" placeholder="Confirm Email"
+	onchange="myValidation(this,'email');"/>
+<input type="password" name="password"
+	onchange="myValidation(this, '');" />
+<input type="password" name="confirmpassword"
+	onchange="myValidation(this, 'password');"/>
+<input type="text" name="username" placeholder="Username"
+	onchange="myValidation(this, '');"/>
+<select name="test1">
+	<option value="0">0</option>
+	<option value="1">1</option>
+</select>
+<select name="test2" onchange="myValidation(this,'test1');">
+	<option value="0">0</option>
+	<option value="1">1</option>
+</select>
 <input type="submit" value="Try it"/>
-
-
-
-
-
 </form>
-</div>
 </body>
 </html>
-<br><pre>array (
-)</pre><br>
