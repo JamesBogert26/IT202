@@ -74,6 +74,7 @@ input { border: 1px solid black; }
 <input name="name" type="text" placeholder="Enter your name"/>
 
 <input name="email" type="email" placeholder="name@example.com"/>
+<input name="confemail" type="email" placeholder="name@example.com"/>
 <span id="validation.email" style="display:none;"></span>
 
 <input type="password" name="password" placeholder="Enter password"/>
