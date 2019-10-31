@@ -41,10 +41,20 @@ function onSubmit(){
 			break;
 		case "db": sampleDB();
 			break;
+		case "multiply": sampleMultiply();
+			break;
 		default:
 			break;
 	}
 }
+
+function sampleMultiply(){
+	let cont = document.getElementById("output");
+	let form = document.form[0];
+	let data = "number1=" + form.number1.value + "$number2=" + form.number2.value;
+	myAjax("POST", "echo", cont, data);
+}
+	
 function sampleDB(){
 	let cont = document.getElementById("output");
 	myAjax("POST", "db", cont);
@@ -82,6 +92,13 @@ function handleInputs(){
 			form.number2.style.display = "block";
 			form.message.style.display = "none";
 			break;
+			
+		case "multiply":
+			form.number1.style.display = "block";
+			form.number2.style.display = "block";
+			form.message.style.display = "none";
+			break;
+		
 		case "html":
 		case "json":
 		default:
@@ -113,6 +130,7 @@ section{ width:80%; margin-left: auto; margin-right:auto; background-color:white
 		<select name="type" onchange="handleInputs();">
 			<option value="echo">Echo</option>
 			<option value="add">Add Nums</option>
+			<option value="multiply">Multiply Nums</option>	
 			<option value="html">Get HTML</option>
 			<option value="json">Get JSON</option>
 			<option value="db">Get Test Users from DB</option>
