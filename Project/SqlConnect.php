@@ -4,18 +4,18 @@ $password = $_POST['password'];
 $email = $_POST['email'];
 
 if(!empty($username) || !empty($password) {
-	$host = "localhost";
-	$dbUsername = "root";
-	$dbPassword = "";
-	$dbname = "TestUsers";
+	$host = "sql1.njit.edu";
+	$dbUsername = "jbb26";
+	$dbPassword = "QeImfRBe";
+	$dbname = "reg";
 	
 	$conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
 	
 	if(mysqli_connect_error()){
-		die('connect error('.mysqli connect error().')'.mysqli_connect());
+		die('Connect Error('.mysqli connect errno().')'.mysqli_connect_error());
 		}else{
-			$SELECT = "SELECT email from register where email = ? Limit 1";
-			$INSERT = "INSERT Into register (username, password, email);
+			$SELECT = "SELECT email From reg Where email = ? Limit 1";
+			$INSERT = "INSERT Into reg (username, password, email)";
 			
 			$stmt = $conn->prepare($SELECT);
 			$stmt->bind_param("s",$email);
@@ -31,9 +31,8 @@ if(!empty($username) || !empty($password) {
 				$stmt->bind_param("ssssii", $username, $password, $email);
 				$stmt->execute();
 				echo "recorded";
-				
-			}echo{
-					echo "already taken";
+			}else{
+				echo "already taken";
 			}
 			$stmt->close();
 			$conn->close();	
@@ -46,3 +45,4 @@ if(!empty($username) || !empty($password) {
 }
 
 ?>
+
