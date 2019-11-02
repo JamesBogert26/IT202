@@ -28,7 +28,7 @@ try{
 	$insert_query = "INSERT INTO `TestUsers`( `username`, `pin`) 
 		VALUES (:username, :pin)";
 	$stmt = $db->prepare($insert_query);
-	$newUser = "Billy";
+	$newUser = "lmaolmao";
 	$newPin = 1234;
 	$r = $stmt->execute(array(":username"=> $newUser, ":pin"=>$newPin));
 	
@@ -41,7 +41,7 @@ try{
 	//select * from TestUsers where username =
 	$select_query = "select * from `TestUsers` where username = :username";
 	$stmt = $db->prepare($select_query);
-	$r = $stmt->execute(array(":username"=> "Billy"));
+	$r = $stmt->execute(array(":username"=> "lmaolmao"));
 	$results = $stmt->fetch(PDO::FETCH_ASSOC);
 	//print_r($stmt->errorInfo());
 	echo "<pre>" . var_export($results, true) . "</pre>"; 
