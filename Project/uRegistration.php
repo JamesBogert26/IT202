@@ -8,7 +8,7 @@ mysqli_select_db($con, 'jbb26');
 
 $name = $_POST['user'];
 $pass = $_POST['password'];
-$hashed_password = password_hash($pass, PASSWORD_DEFAULT);
+$hashed_password = password_hash($pass, PASSWORD_BCRYPT);
 
 $_SESSION['name']=$name;
 $_SESSION['pass']=$pass;
@@ -30,4 +30,3 @@ else{
 }
 ?>
 
-header('location:uLogin.php'); line 2

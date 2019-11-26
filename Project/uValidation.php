@@ -6,13 +6,13 @@ $con = mysqli_connect('sql1.njit.edu' , 'jbb26', 'QeImfRBe');
 
 mysqli_select_db($con, 'jbb26');
 
-$n = $_SESSION['name'];
-$p = $_SESSION['pass'];
+$name = $_POST['user'];
+$pass = $_POST['password'];
 $y = $_SESSION['hash'];
 
-if(password_verify($p, $y)) {
+if(password_verify($pass, $y)) {
 
-	$s = " select * from usertable where name = '$n' && password = '$y'";
+	$s = " select * from usertable where name = '$name' && password = '$y'";
 
 	$result = mysqli_query($con, $s);
 
@@ -26,7 +26,10 @@ if(password_verify($p, $y)) {
 		//header('location:uLogin.php');
 		echo " Login failed. Check username and password";
 	}
+}else{
+	echo " Login failed. Check username and password";
 }
+	
 	
 
 ?>
