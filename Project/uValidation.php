@@ -9,10 +9,8 @@ mysqli_select_db($con, 'jbb26');
 $n = $_SESSION['name'];
 $p = $_SESSION['pass'];
 $y = $_SESSION['hash'];
-echo $y;
+
 if(password_verify($p, $y)) {
-		// If the password inputs matched the hashed password in the database
-		// Do something, you know... log them in.
 
 	$s = " select * from usertable where name = '$n' && password = '$y'";
 
