@@ -8,6 +8,11 @@ mysqli_select_db($con, 'jbb26');
 
 $name = $_POST['user'];
 $pass = $_POST['password'];
+$hashed_password = password_hash($pass, PASSWORD_DEFAULT);
+
+$_SESSION['name']=$name;
+$_SESSION['pass']=$pass;
+$_SESSION['hash']=$hashed_password;
 
 $s = " select * from usertable where name = '$name'";
 
@@ -19,8 +24,10 @@ if($num == 1){
 	echo" Username already taken";
 }
 else{
-	$reg = " insert into usertable(name , password) values ('$name' , '$pass')";
+	$reg = " insert into usertable(name , password) values ('$name' , '$hashed_password')";
 	mysqli_query($con, $reg);
 	echo" Registration Successful";
 }
 ?>
+
+header('location:uLogin.php'); line 2
