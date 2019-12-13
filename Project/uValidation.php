@@ -19,7 +19,7 @@ if(password_verify($pass, $y)) {
 	$num = mysqli_num_rows($result);
 
 	if($num == 1){
-		header('location:uLand.php');
+		header('location:uTest2.php');
 	}
 	
 	else{

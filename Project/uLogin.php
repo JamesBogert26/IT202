@@ -7,6 +7,7 @@
 </head>
 <body>
 
+
 <div class = "container">
 	
 	<h2> Login </h2>
@@ -14,27 +15,27 @@
 		<div class ="form-group">
 			<label> Username </label>
 			<input type = "text" name="user" class = "form-control" required>
-			</div>
+		</div>
 		<div class = "form-group">
 			<label>Password</label>
 			<input type ="password" name="password" class="form-control" required>
-			</div>
+		</div>
 			<button type ="submit" class="btn btn-primary"> Login </button>
-		</form>
-	</div>
+	</form>
+</div>
 	
 	<h2> Register </h2>
 	<form action = "uRegistration.php" method = "post">
 		<div class ="form-group">
 			<label>Username</label>
 			<input type ="text" name="user" class="form-control" required>
-			</div>
+		</div>
 		<div class = "form-group">
 			<label> Password </label>
 			<input type = "password" name="password" class= "form-control" required>
-			</div>
+		</div>
 			<button type ="submit" class= "btn btn-primary"> Register </button>
-			</form>
+	</form>
 		
 	
 
